@@ -65,5 +65,22 @@ export const api = {
   },
   async remove(module, id) {
     return unwrap(await client.delete(`/api/${module}/${id}`));
+  },
+
+  // ---- M2: Trading & Procurement special endpoints ----
+  async acceptQuote(quoteId) {
+    return unwrap(await client.put(`/api/quotes/${quoteId}/accept`, {}));
+  },
+  async setOrderStatus(orderId, status) {
+    return unwrap(await client.put(`/api/orders/${orderId}/status`, { status }));
+  },
+  async setPOStatus(poId, status) {
+    return unwrap(await client.put(`/api/purchase-orders/${poId}/status`, { status }));
+  },
+  async approveRequisition(reqId, decision) {
+    return unwrap(await client.put(`/api/purchase-requisitions/${reqId}/approve`, { decision }));
+  },
+  async inventoryAdjustment(body) {
+    return unwrap(await client.post('/api/inventory/adjustment', body));
   }
 };
