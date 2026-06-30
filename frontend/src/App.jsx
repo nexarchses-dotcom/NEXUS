@@ -7,8 +7,8 @@ import Navbar from './components/Navbar.jsx';
 import Login from './screens/Login.jsx';
 import Dashboard from './screens/Dashboard.jsx';
 import ModuleScreen from './screens/ModuleScreen.jsx';
+import { AcceptQuote, OrderStatus, POStatus, RequisitionApprove } from './screens/TradingActions.jsx';
 
-// Set VITE_GOOGLE_CLIENT_ID at build time (must match Config.GoogleOAuthClientId).
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || 'REPLACE_WITH_OAUTH_CLIENT_ID';
 
 function Shell({ children }) {
@@ -30,13 +30,8 @@ export default function App() {
   if (loading || !ready) {
     return <div className="min-h-screen flex items-center justify-center text-gray-400">Loading…</div>;
   }
-
   if (!user) {
-    return (
-      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-        <Login />
-      </GoogleOAuthProvider>
-    );
+    return <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}><Login /></GoogleOAuthProvider>;
   }
 
   return (
@@ -44,7 +39,25 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/products" element={
-          <ModuleScreen module="products" title="Product" idField="productId" />} />
+          <ModuleScreen module="products" moduleKey="Products" title="Product" idField="productId" />} />
+        <Route path="/rfqs" element={
+          <ModuleScreen module="rfqs" moduleKey="RFQs" title="RFQ" idField="rfqId" />} />
+        <Route path="/quotes" element={
+          <ModuleScreen module="quotes" moduleKey="Quotes" title="Quote" idField="quoteId"
+            renderActions={AcceptQuote} />} />
+        <Route path="/orders" element={
+          <ModuleScreen module="orders" moduleKey="Orders" title="Order" idField="orderId"
+            renderActions={OrderStatus} />} />
+        <Route path="/purchase-orders" element={
+          <ModuleScreen module="purchase-orders" moduleKey="PurchaseOrders" title="Purchase Order" idField="poId"
+            renderActions={POStatus} />} />
+        <Route path="/purchase-requisitions" element={
+          <ModuleScreen module="purchase-requisitions" moduleKey="PurchaseRequisitions"
+            title="Requisition" idField="reqId" renderActions={RequisitionApprove} />} />
+        <Route path="/inventory" element={
+          <ModuleScreen module="inventory" moduleKey="Inventory" title="Inventory" idField="inventoryId" />} />
+        <Route path="/warehouses" element={
+          <ModuleScreen module="warehouses" moduleKey="Warehouses" title="Warehouse" idField="warehouseId" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Shell>
