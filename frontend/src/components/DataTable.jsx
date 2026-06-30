@@ -6,7 +6,7 @@ import React, { useMemo, useState } from 'react';
  * @param {Array} rows
  * @param {function} onEdit, onDelete  optional row actions
  */
-export default function DataTable({ columns, rows, onEdit, onDelete }) {
+export default function DataTable({ columns, rows, onEdit, onDelete, renderActions }) {
   const [query, setQuery] = useState('');
   const [sortKey, setSortKey] = useState(null);
   const [sortDir, setSortDir] = useState('asc');
@@ -59,7 +59,7 @@ export default function DataTable({ columns, rows, onEdit, onDelete }) {
                   {c.label}{sortKey === c.key ? (sortDir === 'asc' ? ' ▲' : ' ▼') : ''}
                 </th>
               ))}
-              {(onEdit || onDelete) && <th className="px-3 py-2" />}
+              {(onEdit || onDelete || renderActions) && <th className="px-3 py-2" />}
             </tr>
           </thead>
           <tbody>
@@ -75,8 +75,9 @@ export default function DataTable({ columns, rows, onEdit, onDelete }) {
                     {String(row[c.key] ?? '')}
                   </td>
                 ))}
-                {(onEdit || onDelete) && (
+                {(onEdit || onDelete || renderActions) && (
                   <td className="px-3 py-2 text-right whitespace-nowrap">
+                    {renderActions && <span className="mr-3">{renderActions(row)}</span>}
                     {onEdit && <button onClick={() => onEdit(row)}
                       className="text-primary hover:underline mr-3">Edit</button>}
                     {onDelete && <button onClick={() => onDelete(row)}
