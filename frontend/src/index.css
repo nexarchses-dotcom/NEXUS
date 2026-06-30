@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #1E3A5F;
+  --color-primary-dark: #152B45;
+  --color-primary-soft: #E8EEF5;
+}
+
+html, body, #root { height: 100%; }
+body { margin: 0; background: #F6F8FB; color: #1F2937; -webkit-font-smoothing: antialiased; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
