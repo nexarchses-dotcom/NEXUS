@@ -115,5 +115,35 @@ export const api = {
   },
   async projectBoard(projectId) {
     return unwrap(await client.get(`/api/projects/${projectId}/board`));
-  }
+  },
+
+  // ---- M6: Platform & Intelligence ----
+  async dashboardMetrics() {
+    return unwrap(await client.get('/api/intelligence/dashboard-metrics'));
+  },
+  async alerts() {
+    return unwrap(await client.get('/api/alerts'));
+  },
+  async markAlertRead(alertId) {
+    return unwrap(await client.put(`/api/alerts/${alertId}/read`, {}));
+  },
+  async acknowledgeAlarm(alarmId) {
+    return unwrap(await client.put(`/api/alarms/${alarmId}/acknowledge`, {}));
+  },
+  async resolveAlarm(alarmId, notes) {
+    return unwrap(await client.put(`/api/alarms/${alarmId}/resolve`, { notes }));
+  },
+  async integrationLogs() {
+    return unwrap(await client.get('/api/integrations/logs'));
+  },
+
+  // ---- Customer Portal (guest) ----
+  portalToken: localStorage.getItem('nexus_portal_token') || '',
+  setPortalToken(t) { this.portalToken = t || ''; if (t) localStorage.setItem('nexus_portal_token', t); else localStorage.removeItem('nexus_portal_token'); },
+  async portalRegister(body) { return unwrap(await client.post('/api/portal/register', body)); },
+  async portalLogin(body) { const r = unwrap(await client.post('/api/portal/login', body)); return r; },
+  async portalProducts() { return unwrap(await client.get('/api/portal/products', { headers: { Authorization: `Bearer ${this.portalToken}` } })); },
+  async portalSubmitRfq(body) { return unwrap(await client.post('/api/portal/rfqs', body, { headers: { Authorization: `Bearer ${this.portalToken}` } })); },
+  async portalOrders() { return unwrap(await client.get('/api/portal/orders', { headers: { Authorization: `Bearer ${this.portalToken}` } })); },
+  async portalChatbot(message) { return unwrap(await client.post('/api/portal/chatbot', { message })); }
 };
