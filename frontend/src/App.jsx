@@ -10,6 +10,8 @@ import ModuleScreen from './screens/ModuleScreen.jsx';
 import { AcceptQuote, OrderStatus, POStatus, RequisitionApprove } from './screens/TradingActions.jsx';
 import JournalEntries from './screens/JournalEntries.jsx';
 import Reports from './screens/Reports.jsx';
+import PayrollRuns from './screens/PayrollRuns.jsx';
+import { LeaveApprove } from './screens/HRActions.jsx';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || 'REPLACE_WITH_OAUTH_CLIENT_ID';
 
@@ -74,6 +76,26 @@ export default function App() {
         <Route path="/budgets" element={
           <ModuleScreen module="budgets" moduleKey="Budgets" title="Budget" idField="budgetId" />} />
         <Route path="/reports" element={<Reports />} />
+
+        {/* M4 — HR & Payroll */}
+        <Route path="/employees" element={
+          <ModuleScreen module="employees" moduleKey="Employees" title="Employee" idField="employeeId" />} />
+        <Route path="/attendance" element={
+          <ModuleScreen module="attendance" moduleKey="Attendance" title="Attendance" idField="attendanceId" />} />
+        <Route path="/leave-types" element={
+          <ModuleScreen module="leave-types" moduleKey="LeaveManagement" title="Leave Type" idField="leaveTypeId" />} />
+        <Route path="/leave-balances" element={
+          <ModuleScreen module="leave-balances" moduleKey="LeaveBalances" title="Leave Balance" idField="balanceId" />} />
+        <Route path="/leave-requests" element={
+          <ModuleScreen module="leave-requests" moduleKey="LeaveRequests" title="Leave Request" idField="requestId"
+            renderActions={LeaveApprove} />} />
+        <Route path="/performance-reviews" element={
+          <ModuleScreen module="performance-reviews" moduleKey="PerformanceReviews" title="Review" idField="reviewId" />} />
+        <Route path="/training-certifications" element={
+          <ModuleScreen module="training-certifications" moduleKey="Training" title="Certification" idField="certificationId" />} />
+        <Route path="/salary-structures" element={
+          <ModuleScreen module="salary-structures" moduleKey="Payroll" title="Salary Component" idField="structureId" />} />
+        <Route path="/payroll-runs" element={<PayrollRuns />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
