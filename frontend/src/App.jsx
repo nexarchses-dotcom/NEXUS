@@ -14,6 +14,10 @@ import PayrollRuns from './screens/PayrollRuns.jsx';
 import { LeaveApprove } from './screens/HRActions.jsx';
 import { StockTransferStatus, ShipmentStatus } from './screens/OpsActions.jsx';
 import Projects from './screens/Projects.jsx';
+import EventLog from './screens/EventLog.jsx';
+import Alarms from './screens/Alarms.jsx';
+import Portal from './screens/Portal.jsx';
+import { useLocation } from 'react-router-dom';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || 'REPLACE_WITH_OAUTH_CLIENT_ID';
 
@@ -32,6 +36,10 @@ function Shell({ children }) {
 export default function App() {
   const { user, loading } = useAuth();
   const { ready } = useConfig();
+  const location = useLocation();
+
+  // Customer Portal is a public surface with its own guest auth — served before the staff gate.
+  if (location.pathname.startsWith('/portal')) return <Portal />;
 
   if (loading || !ready) {
     return <div className="min-h-screen flex items-center justify-center text-gray-400">Loading…</div>;
@@ -145,6 +153,24 @@ export default function App() {
           <ModuleScreen module="support-tickets" moduleKey="SupportTickets" title="Support Ticket" idField="ticketId" />} />
         <Route path="/knowledge-base" element={
           <ModuleScreen module="knowledge-base" moduleKey="KnowledgeBase" title="KB Article" idField="articleId" />} />
+
+        {/* M6 — Platform & Intelligence */}
+        <Route path="/event-log" element={<EventLog />} />
+        <Route path="/alarms" element={<Alarms />} />
+        <Route path="/alarm-rules" element={
+          <ModuleScreen module="alarm-rules" moduleKey="AlarmRules" title="Alarm Rule" idField="alarmRuleId" />} />
+        <Route path="/automation-rules" element={
+          <ModuleScreen module="automation-rules" moduleKey="AutomationRules" title="Automation Rule" idField="ruleId" />} />
+        <Route path="/notification-templates" element={
+          <ModuleScreen module="notification-templates" moduleKey="NotificationTemplates" title="Template" idField="templateId" />} />
+        <Route path="/chatbot-faq" element={
+          <ModuleScreen module="chatbot-faq" moduleKey="ChatbotFAQ" title="FAQ" idField="faqId" />} />
+        <Route path="/webhooks" element={
+          <ModuleScreen module="integrations/webhooks" moduleKey="WebhookDefinitions" title="Webhook" idField="webhookId" />} />
+        <Route path="/connectors" element={
+          <ModuleScreen module="integrations/connectors" moduleKey="APIConnectors" title="Connector" idField="connectorId" />} />
+        <Route path="/entities" element={
+          <ModuleScreen module="entities" moduleKey="Entities" title="Entity" idField="entityId" />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
