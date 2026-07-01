@@ -8,6 +8,8 @@ import Login from './screens/Login.jsx';
 import Dashboard from './screens/Dashboard.jsx';
 import ModuleScreen from './screens/ModuleScreen.jsx';
 import { AcceptQuote, OrderStatus, POStatus, RequisitionApprove } from './screens/TradingActions.jsx';
+import JournalEntries from './screens/JournalEntries.jsx';
+import Reports from './screens/Reports.jsx';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || 'REPLACE_WITH_OAUTH_CLIENT_ID';
 
@@ -58,6 +60,21 @@ export default function App() {
           <ModuleScreen module="inventory" moduleKey="Inventory" title="Inventory" idField="inventoryId" />} />
         <Route path="/warehouses" element={
           <ModuleScreen module="warehouses" moduleKey="Warehouses" title="Warehouse" idField="warehouseId" />} />
+
+        {/* M3 — Finance & Accounting */}
+        <Route path="/chart-of-accounts" element={
+          <ModuleScreen module="chart-of-accounts" moduleKey="ChartOfAccounts" title="Account" idField="accountId" />} />
+        <Route path="/journal-entries" element={<JournalEntries />} />
+        <Route path="/invoices" element={
+          <ModuleScreen module="invoices" moduleKey="Invoices" title="Invoice" idField="invoiceId" />} />
+        <Route path="/payments" element={
+          <ModuleScreen module="payments" moduleKey="Payments" title="Payment" idField="paymentId" />} />
+        <Route path="/tax-codes" element={
+          <ModuleScreen module="tax-codes" moduleKey="TaxCodes" title="Tax Code" idField="taxCodeId" />} />
+        <Route path="/budgets" element={
+          <ModuleScreen module="budgets" moduleKey="Budgets" title="Budget" idField="budgetId" />} />
+        <Route path="/reports" element={<Reports />} />
+
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Shell>
