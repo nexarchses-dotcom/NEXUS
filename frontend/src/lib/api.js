@@ -104,5 +104,16 @@ export const api = {
   },
   async processPayroll(runId) {
     return unwrap(await client.put(`/api/payroll-runs/${runId}/process`, {}));
+  },
+
+  // ---- M5: Operations, Logistics, Sales, Vendors, Contracts, Projects, Risk, Helpdesk, Docs ----
+  async setStockTransferStatus(id, status) {
+    return unwrap(await client.put(`/api/stock-transfers/${id}/status`, { status }));
+  },
+  async setShipmentStatus(id, status) {
+    return unwrap(await client.put(`/api/shipments/${id}/status`, { status }));
+  },
+  async projectBoard(projectId) {
+    return unwrap(await client.get(`/api/projects/${projectId}/board`));
   }
 };
