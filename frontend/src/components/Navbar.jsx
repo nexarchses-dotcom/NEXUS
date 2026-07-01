@@ -33,6 +33,33 @@ const GROUPS = [
     { to: '/training-certifications', label: 'Training & Certs' },
     { to: '/salary-structures', label: 'Salary Structures' },
     { to: '/payroll-runs', label: 'Payroll Runs' }
+  ]},
+  { label: 'Operations', items: [
+    { to: '/work-orders', label: 'Work Orders' },
+    { to: '/assets', label: 'Assets' },
+    { to: '/maintenance-records', label: 'Maintenance' },
+    { to: '/quality-inspections', label: 'Quality Inspections' },
+    { to: '/stock-transfers', label: 'Stock Transfers' },
+    { to: '/shipments', label: 'Shipments' }
+  ]},
+  { label: 'Sales & CRM', items: [
+    { to: '/contacts', label: 'Contacts' },
+    { to: '/sales-pipeline', label: 'Sales Pipeline' },
+    { to: '/campaigns', label: 'Campaigns' },
+    { to: '/communication-log', label: 'Communication Log' },
+    { to: '/vendors', label: 'Vendors' },
+    { to: '/vendor-ratings', label: 'Vendor Ratings' },
+    { to: '/vendor-contracts', label: 'Vendor Contracts' }
+  ]},
+  { label: 'Projects & More', items: [
+    { to: '/projects', label: 'Projects' },
+    { to: '/contracts', label: 'Contracts' },
+    { to: '/contract-obligations', label: 'Contract Obligations' },
+    { to: '/documents', label: 'Documents' },
+    { to: '/risk-register', label: 'Risk Register' },
+    { to: '/compliance-items', label: 'Compliance' },
+    { to: '/support-tickets', label: 'Support Tickets' },
+    { to: '/knowledge-base', label: 'Knowledge Base' }
   ]}
 ];
 
