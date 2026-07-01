@@ -60,6 +60,17 @@ const GROUPS = [
     { to: '/compliance-items', label: 'Compliance' },
     { to: '/support-tickets', label: 'Support Tickets' },
     { to: '/knowledge-base', label: 'Knowledge Base' }
+  ]},
+  { label: 'Platform', items: [
+    { to: '/event-log', label: 'Event Log' },
+    { to: '/alarms', label: 'Alarms' },
+    { to: '/alarm-rules', label: 'Alarm Rules' },
+    { to: '/automation-rules', label: 'Automation Rules' },
+    { to: '/notification-templates', label: 'Notification Templates' },
+    { to: '/chatbot-faq', label: 'Chatbot FAQ' },
+    { to: '/webhooks', label: 'Webhooks' },
+    { to: '/connectors', label: 'API Connectors' },
+    { to: '/entities', label: 'Entities' }
   ]}
 ];
 
