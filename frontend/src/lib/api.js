@@ -96,5 +96,13 @@ export const api = {
   },
   async report(name, params = {}) {
     return unwrap(await client.get(`/api/reports/${name}`, { params }));
+  },
+
+  // ---- M4: HR & Payroll ----
+  async approveLeave(requestId, decision) {
+    return unwrap(await client.put(`/api/leave-requests/${requestId}/approve`, { decision }));
+  },
+  async processPayroll(runId) {
+    return unwrap(await client.put(`/api/payroll-runs/${runId}/process`, {}));
   }
 };
