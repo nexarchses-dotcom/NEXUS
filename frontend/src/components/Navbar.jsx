@@ -22,6 +22,17 @@ const GROUPS = [
     { to: '/tax-codes', label: 'Tax Codes' },
     { to: '/budgets', label: 'Budgets' },
     { to: '/reports', label: 'Reports' }
+  ]},
+  { label: 'HR & Payroll', items: [
+    { to: '/employees', label: 'Employees' },
+    { to: '/attendance', label: 'Attendance' },
+    { to: '/leave-types', label: 'Leave Types' },
+    { to: '/leave-balances', label: 'Leave Balances' },
+    { to: '/leave-requests', label: 'Leave Requests' },
+    { to: '/performance-reviews', label: 'Performance Reviews' },
+    { to: '/training-certifications', label: 'Training & Certs' },
+    { to: '/salary-structures', label: 'Salary Structures' },
+    { to: '/payroll-runs', label: 'Payroll Runs' }
   ]}
 ];
 
