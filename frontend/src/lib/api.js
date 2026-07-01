@@ -82,5 +82,19 @@ export const api = {
   },
   async inventoryAdjustment(body) {
     return unwrap(await client.post('/api/inventory/adjustment', body));
+  },
+
+  // ---- M3: Finance & Accounting ----
+  async createJournalEntry(body) {
+    return unwrap(await client.post('/api/journal-entries', body));
+  },
+  async postJournalEntry(entryId) {
+    return unwrap(await client.put(`/api/journal-entries/${entryId}/post`, {}));
+  },
+  async getJournalEntry(entryId) {
+    return unwrap(await client.get(`/api/journal-entries/${entryId}`));
+  },
+  async report(name, params = {}) {
+    return unwrap(await client.get(`/api/reports/${name}`, { params }));
   }
 };
