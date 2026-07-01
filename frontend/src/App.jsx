@@ -12,6 +12,8 @@ import JournalEntries from './screens/JournalEntries.jsx';
 import Reports from './screens/Reports.jsx';
 import PayrollRuns from './screens/PayrollRuns.jsx';
 import { LeaveApprove } from './screens/HRActions.jsx';
+import { StockTransferStatus, ShipmentStatus } from './screens/OpsActions.jsx';
+import Projects from './screens/Projects.jsx';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || 'REPLACE_WITH_OAUTH_CLIENT_ID';
 
@@ -96,6 +98,53 @@ export default function App() {
         <Route path="/salary-structures" element={
           <ModuleScreen module="salary-structures" moduleKey="Payroll" title="Salary Component" idField="structureId" />} />
         <Route path="/payroll-runs" element={<PayrollRuns />} />
+
+        {/* M5 — Operations, Logistics, Sales/CRM, Vendors, Contracts, Projects, Risk, Helpdesk, Docs */}
+        <Route path="/work-orders" element={
+          <ModuleScreen module="work-orders" moduleKey="WorkOrders" title="Work Order" idField="workOrderId" />} />
+        <Route path="/assets" element={
+          <ModuleScreen module="assets" moduleKey="Assets" title="Asset" idField="assetId" />} />
+        <Route path="/maintenance-records" element={
+          <ModuleScreen module="maintenance-records" moduleKey="MaintenanceRecords" title="Maintenance Record" idField="recordId" />} />
+        <Route path="/quality-inspections" element={
+          <ModuleScreen module="quality-inspections" moduleKey="QualityInspections" title="Inspection" idField="inspectionId" />} />
+        <Route path="/stock-transfers" element={
+          <ModuleScreen module="stock-transfers" moduleKey="StockTransfers" title="Stock Transfer" idField="transferId"
+            renderActions={StockTransferStatus} />} />
+        <Route path="/shipments" element={
+          <ModuleScreen module="shipments" moduleKey="Shipments" title="Shipment" idField="shipmentId"
+            renderActions={ShipmentStatus} />} />
+
+        <Route path="/contacts" element={
+          <ModuleScreen module="contacts" moduleKey="Contacts" title="Contact" idField="contactId" />} />
+        <Route path="/sales-pipeline" element={
+          <ModuleScreen module="sales-pipeline" moduleKey="SalesPipeline" title="Pipeline Deal" idField="pipelineId" />} />
+        <Route path="/campaigns" element={
+          <ModuleScreen module="campaigns" moduleKey="Campaigns" title="Campaign" idField="campaignId" />} />
+        <Route path="/communication-log" element={
+          <ModuleScreen module="communication-log" moduleKey="CommunicationLog" title="Communication" idField="logId" />} />
+        <Route path="/vendors" element={
+          <ModuleScreen module="vendors" moduleKey="Vendors" title="Vendor" idField="vendorId" />} />
+        <Route path="/vendor-ratings" element={
+          <ModuleScreen module="vendor-ratings" moduleKey="VendorRatings" title="Vendor Rating" idField="ratingId" />} />
+        <Route path="/vendor-contracts" element={
+          <ModuleScreen module="vendor-contracts" moduleKey="VendorContracts" title="Vendor Contract" idField="vendorContractId" />} />
+
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contracts" element={
+          <ModuleScreen module="contracts" moduleKey="Contracts" title="Contract" idField="contractId" />} />
+        <Route path="/contract-obligations" element={
+          <ModuleScreen module="contract-obligations" moduleKey="ContractObligations" title="Obligation" idField="obligationId" />} />
+        <Route path="/documents" element={
+          <ModuleScreen module="documents" moduleKey="Documents" title="Document" idField="documentId" />} />
+        <Route path="/risk-register" element={
+          <ModuleScreen module="risk-register" moduleKey="RiskRegister" title="Risk" idField="riskId" />} />
+        <Route path="/compliance-items" element={
+          <ModuleScreen module="compliance-items" moduleKey="ComplianceItems" title="Compliance Item" idField="complianceId" />} />
+        <Route path="/support-tickets" element={
+          <ModuleScreen module="support-tickets" moduleKey="SupportTickets" title="Support Ticket" idField="ticketId" />} />
+        <Route path="/knowledge-base" element={
+          <ModuleScreen module="knowledge-base" moduleKey="KnowledgeBase" title="KB Article" idField="articleId" />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
